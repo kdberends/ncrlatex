@@ -76,6 +76,7 @@
 
 % No indent of new paragraphs
 \setlength{\parindent}{0pt}
+\usepackage{dblfloatfix}    % NCR / To enable figures at the bottom of page
 % =============================================================================
 % 2) Fonts
 % =============================================================================
@@ -105,6 +106,7 @@
 \setlength{\columnsep}{1.5cm}
 \setlength{\columnwidth}{7.5cm}
 \pagenumbering{gobble}
+
 
 % =============================================================================
 % 3) Commands
@@ -707,6 +709,8 @@
 \@ifundefined{@biboptions}{\xdef\@biboptions{numbers}}{}
 \InputIfFileExists{\jobname.spl}{}{}
 \RequirePackage[\@biboptions]{natbib}
+% NCR: no space between bib entrences
+\setlength{\bibsep}{0pt plus 0.3ex}
 
 \newwrite\splwrite
 \immediate\openout\splwrite=\jobname.spl
