@@ -56,11 +56,16 @@
 \usepackage{graphicx}
 \usepackage{blindtext, color}
 \usepackage{subcaption}
+\usepackage{pgffor, ifthen}
 
 \newcommand{\ConferenceVenueAddress}[1]{\def\@ConferenceVenueAddress{#1}}
 \newcommand{\ConferenceVenueContact}[1]{\def\@ConferenceVenueContact{#1}}
 \newcommand{\OrganisingPartner}[1]{\def\@OrganisingPartner{#1}}
 \newcommand{\PartnerLogo}[1]{\def\@PartnerLogo{#1}}
+
+\definecolor{gray75}{gray}{0.75}
+\definecolor{gray65}{gray}{0.65}
+
 
 % =============================================================================
 % 2) Fonts & style
@@ -304,6 +309,18 @@
     \cftchapterprecistoc{#3}
     \includepdf[pages=-, offset=0.0cm -2.5cm]{#4}
 }
+
+% command to insert notespage
+\newcommand{\notes}[3][\empty]{%
+    \newpage
+    \chapter{Notes}
+    \foreach \n in {1,...,#2}{%
+        \ifthenelse{\equal{#1}{\empty}}
+            {\textcolor{gray65}{\rule{#3}{0.5pt}}\\}
+            {\textcolor{gray65}{\rule{#3}{0.5pt}\vspace{#1}}\\}
+        }
+}
+\newcommand{\notespages}{\notes[5pt]{128}{\textwidth}} % 33 lines per page
 
 % =============================================================================
 % 7) Hyperref
