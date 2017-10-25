@@ -3,16 +3,15 @@
 This repository provides LaTeX classes for abstract (ncr_abstract.cls) and conference proceedings (ncr_bundle.cls). 
 
 ## Installation
-To use these LaTeX classes you need to:
 
-1. Install LaTeX
-2. Either install the classes to your LaTeX install or copy the .cls and .sty files to your working folder (i.e. next to your .tex files)
+### MiKTeX
 
-[1] 
-- To install LaTeX on windows we strongly recommend MikTeX (https://miktex.org/)
-- On Linux / OSX (to do)
+- Open MiKTeX settings (On Windows 7, All Programs->MiKTeX 2.#-> Maintenance->Settings) and navigate to 'Roots' tab
+- Click to 'Add...' a new path. Select the 'ncrlatex' directory containing the 'bibtex, dox, tex' subdirectories
+- Click Apply
+- You should now be able to use the 'ncr_abstract' and 'ncr_bundle' classes
 
-[2] 
-- If you install .cls and .sty packages to your local installation, see the following StackOverflow post: https://tex.stackexchange.com/questions/2063/how-can-i-manually-install-a-package-on-miktex-windows
-- Alternatively, just copy the contents of the /base and /template folder to a working directory on your local machine. 
 
+## Class documentation
+
+For the documentation of the ncr abstract and bundle classes, see the [ncrlatex/doc/ncrlatex.pdf](package documentation)
