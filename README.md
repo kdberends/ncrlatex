@@ -1,6 +1,9 @@
-# Netherlands Centre for River Studies (NCR) LaTeX classes
+![Netherlands Centre for River studies](ncrlatex\tex\ncrlatex\figures\ncrlogo_plustext.png)
 
-This repository provides LaTeX classes for abstract (ncr_abstract.cls) and conference proceedings (ncr_bundle.cls). 
+# LaTeX classes
+This repository provides LaTeX classes for abstract (ncr_abstract.cls) and conference proceedings (ncr_bundle.cls) used in the annual NCR DAYS conference. 
+
+For more information about the Netherlands Centre for River studies (NCR) see www.ncr-web.org
 
 ## Installation
 
