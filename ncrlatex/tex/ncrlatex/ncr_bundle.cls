@@ -62,10 +62,12 @@
 \newcommand{\ConferenceVenueContact}[1]{\def\@ConferenceVenueContact{#1}}
 \newcommand{\OrganisingPartner}[1]{\def\@OrganisingPartner{#1}}
 \newcommand{\PartnerLogo}[1]{\def\@PartnerLogo{#1}}
-
+\newcommand{\HeaderText}[1]{\def\@HeaderText{#1}}
+\newcommand{\edition}[1]{\def\@edition{#1}}
+\newcommand{\PublicationNumber}[1]{\def\@PublicationNumber{#1}}
+\newcommand{\AuthorCitation}[1]{\def\@AuthorCitation{#1}}
 \definecolor{gray75}{gray}{0.75}
 \definecolor{gray65}{gray}{0.65}
-
 
 % =============================================================================
 % 2) Fonts & style
@@ -89,9 +91,9 @@
 \fancypagestyle{plain}{
     \fancyhf{}% Clear header/footer
     \fancyhead[RE]{\includegraphics[width=2cm]{figures/ncrlogo_notext.png}}
-    \fancyhead[LE]{NCR DAYS 2018 "THE FUTURE RIVER" DELTARES, DELFT}
+    \fancyhead[LE]{\@HeaderText}
     \fancyhead[LO]{\includegraphics[width=2cm]{figures/ncrlogo_notext.png}}
-    \fancyhead[RO]{NCR DAYS 2018 "THE FUTURE RIVER" DELTARES, DELFT}
+    \fancyhead[RO]{\@HeaderText}
     \fancyfoot[C]{\ifnum\value{page}<2\relax\else\thepage\fi}
 }
 \pagestyle{plain}% Set page style to plain.
@@ -210,7 +212,20 @@
 % 5) Custom title page
 % =============================================================================
 %
-% TO DO: make this configurable from documents
+
+\def\maketitle{%
+\thispagestyle{empty}
+\vspace*{2cm}%
+\begin{center}
+    %\includegraphics[height=5cm]{figures/ncrdayslogo.png}
+    \par\LARGE{NCR DAYS \@edition}
+    \par\Large{\emph{\@title}}%
+    \vspace{2cm}%
+    \par\large{\emph{\@author}}%
+
+\end{center}
+\cleardoublepage
+\newpage}
 
 \newcommand{\contactncrsecretary}{
         \begin{tabular}{@{}p{0.50\textwidth}p{0.50\textwidth}}
@@ -283,8 +298,14 @@
     % -------------
     % Venue information
     % -------------
+    \vfill
+    
     \noindent\ignorespaces\conferencevenue
     \contactncrsecretary
+
+    \vfill
+    \noindent\ignorespaces \textbf{Cite as}: {\@AuthorCitation\xspace(\@edition), \emph{\@title\xspace: NCR DAYS\xspace\@edition\xspace Proceedings}. Netherland Centre for River Studies publication \@PublicationNumber}
+
     \copyrightncr
 
     \mainmatter
