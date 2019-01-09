@@ -60,6 +60,7 @@
 \RequirePackage{subcaption}
 \RequirePackage{pgffor, ifthen}
 
+\newcommand{\CoverPage}[1]{\def\@CoverPage{#1}}
 \newcommand{\CoverCredits}[1]{\def\@CoverCredits{#1}}
 \newcommand{\ConferenceVenueAddress}[1]{\def\@ConferenceVenueAddress{#1}}
 \newcommand{\ConferenceVenueContact}[1]{\def\@ConferenceVenueContact{#1}}
@@ -140,7 +141,7 @@
 % =============================================================================
 % Courtesy of Deltares report style by Jan Mooiman
 
-\usepackage{etoolbox}
+\RequirePackage{etoolbox}
 \setcounter{tocdepth}{3} % i.e. chapter, section, subsection and subsubsection
 
 \renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.7em}}
@@ -167,7 +168,7 @@
       \@restonecolfalse
     \fi
     \begingroup
-        \chapter*{\contentsname
+        \chapter{\contentsname
             \@mkboth{%
                \contentsname}{\contentsname}}%
                \parskip\z@%
@@ -289,8 +290,14 @@
 
 
 \newcommand{\ncrtitle}{%
-    % -- Title page
+    
     \frontmatter
+    % -- Cover page
+    \thispagestyle{empty}
+    \includepdf[offset=0cm \voffset]{\@CoverPage}
+    %\begin{picture}(0,0)\put(0,0){\includegraphics{frontpage/omslag2018-v1_p1.pdf}}\end{picture}%
+    \clearpage
+    % -- Title page
     \maketitle
 
     % -- Colofon page
@@ -333,7 +340,8 @@
     % -- Copyright NCR
     \copyrightncr
 
-    % -- Rest of all things
+    % -- Rest of all things (alpha numerical pagenumbering from hereon)
+    \tableofcontents
     \mainmatter
 
 }%
@@ -350,8 +358,8 @@
 \newcommand{\insertmydocument}[4]%
 { % Syntax: \insertmydocument{Toc level}{Title}{Subtitle}{File}
     % Requires: tocloft hyperref pdfpages
-    \newpage
-    \phantomsection
+    %\newpage
+    %\phantomsection
     \cftaddtitleline{toc}{#1}{#2}{\thepage}
     \cftchapterprecistoc{#3}
     \includepdf[pages=-, offset=0.0cm -2.5cm]{#4}
@@ -384,7 +392,7 @@
     pdftitle={\@title},    % title
     pdfauthor={\@author},     % author
     pdfsubject={Subject},   % subject of the document
-    pdfcreator={Netherlands Centre for River Studies},   % creator of the document
+    pdfcreator={pdflatex},   % creator of the document
     pdfproducer={Netherlands Centre for River Studies}, % producer of the document
     pdfkeywords={rivers,science,netherlands,
                  hydrodynamics,morphodynamics,ecohydraulics,biology,sociology,
@@ -394,7 +402,9 @@
     linkcolor=blue,          % color of internal links (change box color with linkbordercolor)
     citecolor=green,        % color of links to bibliography
     filecolor=magenta,      % color of file links
-    urlcolor=cyan           % color of external links
+    urlcolor=blue,           % color of external links
+    bookmarksopen=true,
+    bookmarksdepth=6
 }
 
 \endinput
