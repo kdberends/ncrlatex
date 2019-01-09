@@ -3,7 +3,7 @@
 %% This LaTeX class is used to make a Book of Abstract / Bundle / Conference
 %% Proceedings for the Netherlands Centre of River Studies. It inherits the
 %% 'book' class and provides the following special definitions:
-%% 
+%% \leftmark
 %% \OrganisingPartner{int} : {1=Deltares, 2=Wageningen, 3=IHE Delft, 4=Twente.
 %%                            5=Utrecht, 6=rijkswaterstaat, 7=radboud, 8=TUD}
 %% \ConferenceVenue{str} : as input, give the address of the conference venue
@@ -52,12 +52,14 @@
 % 1) Packages & variables
 % =============================================================================
 
-\usepackage[utf8]{inputenc}
-\usepackage{graphicx}
-\usepackage{blindtext, color}
-\usepackage{subcaption}
-\usepackage{pgffor, ifthen}
+\RequirePackage[utf8]{inputenc}
 
+\RequirePackage{graphicx}
+\RequirePackage{blindtext, color}
+\RequirePackage{subcaption}
+\RequirePackage{pgffor, ifthen}
+
+\newcommand{\CoverCredits}[1]{\def\@CoverCredits{#1}}
 \newcommand{\ConferenceVenueAddress}[1]{\def\@ConferenceVenueAddress{#1}}
 \newcommand{\ConferenceVenueContact}[1]{\def\@ConferenceVenueContact{#1}}
 \newcommand{\OrganisingPartner}[1]{\def\@OrganisingPartner{#1}}
@@ -73,9 +75,10 @@
 % 2) Fonts & style
 % =============================================================================
 
-% The NCR uses computer modern sans serif
-\renewcommand{\sfdefault}{cmss}
-\renewcommand{\familydefault}{\sfdefault}
+% The NCR uses computer modern sans serif 
+% see (http://www.tug.dk/FontCatalogue/computermodernsansserif/)
+\RequirePackage[T1]{fontenc}
+\renewcommand*\familydefault{\sfdefault}
 
 % Don't print chapter names at start of session
 \newcommand{\unchapter}[1]{%
@@ -273,6 +276,7 @@
     \end{tabular}
 }
 
+
 \newcommand{\copyrightncr}{
     \vfill Copyright {\copyright} \number\year~ Netherlands Centre for River studies\\
     All rights reserved. No part of this document may be reproduced in any form by print,
@@ -305,19 +309,26 @@
         \caption*{Co-sponsored by:}  
         \includegraphics[width=2.5in]{figures/nwologo.jpg}
     \end{figure}
-    % -------------
-    % Venue information
-    % -------------
-    \vfill
     
+    % -- venue information
+    \vfill
     \noindent\ignorespaces\conferencevenue
+
+    % -- Ncr contact information
     \contactncrsecretary
 
+    % -- How to cite
     \vfill
     \noindent\ignorespaces \textbf{Cite as}: {\@AuthorCitation\xspace(\@edition), \emph{\@title\xspace: NCR DAYS\xspace\@edition\xspace Proceedings}. Netherland Centre for River Studies publication \@PublicationNumber}
 
+    % -- Photo credits
+    \vfill
+    \noindent \textbf{Photo credits cover:} \@CoverCredits
+    
+    % -- Copyright NCR
     \copyrightncr
 
+    % -- Rest of all things
     \mainmatter
 
 }%
