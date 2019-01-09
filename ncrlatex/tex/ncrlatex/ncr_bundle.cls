@@ -8,6 +8,7 @@
 %%                            5=Utrecht, 6=rijkswaterstaat, 7=radboud, 8=TUD}
 %% \ConferenceVenue{str} : as input, give the address of the conference venue
 %% \ConferenceContact{str} : as input, give the contact information of the conference 
+%% \IsCosponsoredByNWO{str}: options are ['NWO']
 %% \ncrtitle : redefinition of the \maketitle
 %% \insertmydocument{section}{title}{authors}{path to file}: inserts a single abstract,
 %%                                                           file must be pdf 
@@ -63,6 +64,7 @@
 \newcommand{\ConferenceVenueAddress}[1]{\def\@ConferenceVenueAddress{#1}}
 \newcommand{\ConferenceVenueContact}[1]{\def\@ConferenceVenueContact{#1}}
 \newcommand{\OrganisingPartner}[1]{\def\@OrganisingPartner{#1}}
+\newcommand{\IsCosponsoredBy}[1]{\def\@IsCosponsoredBy{#1}}
 \newcommand{\PartnerLogo}[1]{\def\@PartnerLogo{#1}}
 \newcommand{\HeaderText}[1]{\def\@HeaderText{#1}}
 \newcommand{\edition}[1]{\def\@edition{#1}}
@@ -241,6 +243,7 @@
 \newpage}
 
 \newcommand{\contactncrsecretary}{
+\noindent
         \begin{tabular}{@{}p{0.50\textwidth}p{0.50\textwidth}}
         \begin{tabbing}
             \textbf{Contact NCR} \\
@@ -278,7 +281,7 @@
 
 
 \newcommand{\copyrightncr}{
-    \vfill Copyright {\copyright} \number\year~ Netherlands Centre for River studies\\
+    \vfill \noindent Copyright {\copyright} \number\year~ Netherlands Centre for River studies\\
     All rights reserved. No part of this document may be reproduced in any form by print,
     photo print, photo copy, microfilm or any other means, without written permission from the
     publisher: Netherlands Centre for River studies.
@@ -304,11 +307,13 @@
         \ifdefstring{\@OrganisingPartner}{8}{\PartnerLogo{figures/tudlogo.jpg}}{}        
         \includegraphics[width=2.5in]{\@PartnerLogo}
     \end{figure}
+    \ifdefstring{\@IsCosponsoredBy}{NWO}{
     \begin{figure}[t]
         \centering
         \caption*{Co-sponsored by:}  
         \includegraphics[width=2.5in]{figures/nwologo.jpg}
     \end{figure}
+    }{}
     
     % -- venue information
     \vfill
