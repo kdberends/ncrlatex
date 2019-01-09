@@ -77,6 +77,14 @@
 \renewcommand{\sfdefault}{cmss}
 \renewcommand{\familydefault}{\sfdefault}
 
+% Don't print chapter names at start of session
+\newcommand{\unchapter}[1]{%
+	\begingroup
+	\let\@makechapterhead\@gobble % make \@makechapterhead do nothing
+	\chapter{#1}
+	\endgroup
+}
+
 % enable the selected main text font
 \normalfont\selectfont
 
@@ -90,10 +98,12 @@
 \renewcommand{\headrulewidth}{0pt}
 \fancypagestyle{plain}{
     \fancyhf{}% Clear header/footer
+    \renewcommand*{\chaptermark}[1]{ {\chaptername\ \thechapter: ##1}{} }
+    \fancyhfoffset[RO]{10mm}
     \fancyhead[RE]{\includegraphics[width=2cm]{figures/ncrlogo_notext.png}}
     \fancyhead[LE]{\@HeaderText}
     \fancyhead[LO]{\includegraphics[width=2cm]{figures/ncrlogo_notext.png}}
-    \fancyhead[RO]{\@HeaderText}
+    \fancyhead[RO]{\leftmark}
     \fancyfoot[C]{\ifnum\value{page}<2\relax\else\thepage\fi}
 }
 \pagestyle{plain}% Set page style to plain.
@@ -350,9 +360,9 @@
 
 \usepackage{hyperref}
 \hypersetup{
-    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
-    pdftoolbar=true,        % show Acrobat’s toolbar?
-    pdfmenubar=true,        % show Acrobat’s menu?
+    unicode=false,          % non-Latin characters in Acrobats bookmarks
+    pdftoolbar=true,        % show Acrobats toolbar?
+    pdfmenubar=true,        % show Acrobats menu?
     pdffitwindow=false,     % window fit to page when opened
     pdfstartview={FitH},    % fits the width of the page to the window
     pdftitle={\@title},    % title
