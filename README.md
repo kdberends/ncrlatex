@@ -1,4 +1,4 @@
-![ncr](ncrlatex/tex/ncrlatex/figures/ncrlogo_plustext.png "Netherlands Centre for River Studies" | width=100)
+THIS PROJECT HAS BEEN ARCHIVED AND NO LONGER MAINTAINED. SEE https://github.com/ncrweb/ncrlatex FOR THE CURRENT VERSION
 
 # NCR Abstract & Book of Abstracts style
 This repository contains templates and examples for the NCR abstracts and proceedings. See [https://ncr-web.org](ncr-web.org) for more information on NCR. 
